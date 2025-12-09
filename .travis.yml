@@ -1,4 +1,4 @@
-sudo: false
+sudo: required
 # need to declare the language as well as the matrix below
 language: node_js
 # having top-level `env:` adds a phantom build
@@ -28,6 +28,6 @@ before_install:
   - "npm install -g rimraf"
   - "node . install -g ."
   # required by test/tap/registry.js
-  - "mkdir -p /var/run/couchdb"
+  - "sudo mkdir -p /var/run/couchdb"
 notifications:
     slack: npm-inc:kRqQjto7YbINqHPb1X6nS3g8

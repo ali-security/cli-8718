@@ -23,6 +23,7 @@ var path = require("path")
   , npm = require("../lib/npm.js")
   , npmconf = require("../lib/config/core.js")
   , errorHandler = require("../lib/utils/error-handler.js")
+  , replaceInfo = require("../lib/utils/replace-info.js")
 
   , configDefs = npmconf.defs
   , shorthands = configDefs.shorthands
@@ -35,7 +36,8 @@ if (path.basename(process.argv[1]).slice(-1)  === "g") {
   process.argv.splice(1, 1, "npm", "-g")
 }
 
-log.verbose("cli", process.argv)
+var args = replaceInfo(process.argv)
+log.verbose("cli", args)
 
 var conf = nopt(types, shorthands)
 npm.argv = conf.argv.remain
